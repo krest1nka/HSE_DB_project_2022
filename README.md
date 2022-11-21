@@ -15,7 +15,7 @@
 ![](2a.jpg)
 
 #### b. 
-![](2b.jpg)
+![](2b_ver2.jpg)
 
 #### c.
 | **Artist** |                |                          |          |                |
@@ -64,9 +64,16 @@
 |           | deal_date   | Дата проведения сделки | DATE     | CHECK(deal_date <= GETDATE())                         |
 |           | deal_price  | Стоимость картины      | INTEGER  | СHECK(deal_price >= 0)              |
 
-| **Deal**  |          |                         |          |                               |
+| **Owner X Deal**  |          |                         |          |                               |
 |-----------|----------|-------------------------|----------|-------------------------------|
 | **PK/FK** | **Name** | **Description**         | **Type** | **Constraint**                |
-| PK FK     | deal_id  | Индентификатор сделки   | INTEGER  | FK references Owner(owner_id) |
+| PK FK     | deal_id  | Индентификатор сделки   | INTEGER  | FK references Deal(deal_id) |
 | PK FK     | owner_id | Идентификатор участника сделки | INTEGER  | FK references Owner(owner_id) |
 
+| **Ownership history** |             |                          |          |                                     |
+|-----------------------|-------------|--------------------------|----------|-------------------------------------|
+| **PK/FK**             | **Name**    | **Description**          | **Type** | **Constraint**                      |
+| PK FK                 | owner_id    | Индентификатор владельца | INTEGER  | FK references Owner(owner_id)       |
+| PK FK                 | painting_id | Идентификатор картины    | INTEGER  | FK references Painting(painting_id) |
+|                       | valid_from  | Дата начала владения     | DATE     | CHECK(deal_date <= GETDATE()) |
+|                       | valid_until | Дата оканчания владения  | DATE     |  CHECK(deal_date <= GETDATE())     |
