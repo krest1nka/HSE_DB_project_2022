@@ -18,9 +18,16 @@
 ![](2b.jpg)
 
 #### c.
-|                   |
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| **Artist** |                |                          |          |                |
+|------------|----------------|--------------------------|----------|----------------|
+| **PK/FK**  | **Name**       | **Description**          | **Type** | **Constraint** |
+| PK         | artist_id      | Индентификатор художника | INTEGER  | PRIMARY KEY    |
+|            | artist_name    | Имя художника            | STRING   | NOT NULL       |
+|            | artist_surname | Фамилия художника        | STRING   | NOT NULL       |
+
+| **Artist** |                |                          |          |                |
+|------------|----------------|--------------------------|----------|----------------|
+| **PK/FK**  | **Name**       | **Description**          | **Type** | **Constraint** |
+| PK         | artist_id      | Индентификатор художника | INTEGER  | PRIMARY KEY    |
+|            | artist_name    | Имя художника            | STRING   | NOT NULL       |
+|            | artist_surname | Фамилия художника        | STRING   | NOT NULL       |
