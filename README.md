@@ -56,4 +56,17 @@
 |            | city_name    | Название города           | STRING   | NOT NULL       |
 |            | country_name | Название страны        | STRING   | NOT NULL       |
 
+| **Deal**  |             |                        |          |                                     |
+|-----------|-------------|------------------------|----------|-------------------------------------|
+| **PK/FK** | **Name**    | **Description**        | **Type** | **Constraint**                      |
+| PK        | deal_id     | Индентификатор сделки  | INTEGER  | PRIMARY KEY                         |
+| FK        | painting_id | Идентификатор картины  | INTEGER  | FK references Painting(painting_id) |
+|           | deal_date   | Дата проведения сделки | DATE     | CHECK(deal_date <= GETDATE())                         |
+|           | deal_price  | Стоимость картины      | INTEGER  | СHECK(deal_price >= 0)              |
+
+| **Deal**  |          |                         |          |                               |
+|-----------|----------|-------------------------|----------|-------------------------------|
+| **PK/FK** | **Name** | **Description**         | **Type** | **Constraint**                |
+| PK FK     | deal_id  | Индентификатор сделки   | INTEGER  | FK references Owner(owner_id) |
+| PK FK     | owner_id | Идентификатор участника сделки | INTEGER  | FK references Owner(owner_id) |
 
