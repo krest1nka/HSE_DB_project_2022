@@ -13,22 +13,21 @@
 ![](2a.jpg)
 
 #### b. 
-![](2b_ver2.jpg)
+![](2b_ver3.jpg)
 
 #### c.
 | **Artist** |                |                          |          |                |
 |------------|----------------|--------------------------|----------|----------------|
 | **PK/FK**  | **Name**       | **Description**          | **Type** | **Constraint** |
 | PK         | artist_id      | Индентификатор художника | INTEGER  | PRIMARY KEY    |
-|            | artist_name    | Имя художника            | STRING   | NOT NULL       |
-|            | artist_surname | Фамилия художника        | STRING   | NOT NULL       |
+|            | artist_name    | Имя художника            | STRING   |        |
+|            | artist_surname | Фамилия художника        | STRING   |        |
 
 | **Painting** |               |                         |          |                                   |
 |--------------|---------------|-------------------------|----------|-----------------------------------|
 | **PK/FK**    | **Name**      | **Description**         | **Type** | **Constraint**                    |
 | PK           | painting_id   | Индентификатор картины  | INTEGER  | PRIMARY KEY                       |
 | FK           | artist_id     | Идентификатор художника | INTEGER  | FK references Artist(artist_id)   |
-| FK           | storage_id    | Идентификатор хранилища | INTEGER  | FK references Storage(storage_id) |
 |              | painting_name | Название картирны       | STRING   | NOT NULL                          |
 |              | creation_date | Дата создания картины   | DATE     | CHECK(creation_date <= GETDATE()) |
 
@@ -61,6 +60,7 @@
 | FK        | painting_id | Идентификатор картины  | INTEGER  | FK references Painting(painting_id) |
 |           | deal_date   | Дата проведения сделки | DATE     | CHECK(deal_date <= GETDATE())                         |
 |           | deal_price  | Стоимость картины      | INTEGER  | СHECK(deal_price >= 0)              |
+|           | deal_type  | Тип сделки(продажа/покупка/etc.)     | deal_types ENUM  | NOT NULL              |
 
 | **Owner X Deal**  |          |                         |          |                               |
 |-----------|----------|-------------------------|----------|-------------------------------|
@@ -71,7 +71,8 @@
 | **Ownership history** |             |                          |          |                                     |
 |-----------------------|-------------|--------------------------|----------|-------------------------------------|
 | **PK/FK**             | **Name**    | **Description**          | **Type** | **Constraint**                      |
-| PK FK                 | owner_id    | Индентификатор владельца | INTEGER  | FK references Owner(owner_id)       |
 | PK FK                 | painting_id | Идентификатор картины    | INTEGER  | FK references Painting(painting_id) |
-|                       | valid_from  | Дата начала владения     | DATE     | CHECK(deal_date <= GETDATE()) |
+|    PK                   | valid_from  | Дата начала владения     | DATE     | CHECK(deal_date <= GETDATE()) |
 |                       | valid_until | Дата оканчания владения  | DATE     |  CHECK(deal_date <= GETDATE())     |
+|  FK                 | owner_id    | Индентификатор владельца | INTEGER  | FK references Owner(owner_id)       |
+|  FK                 | storage_id    | Индентификатор хранилища | INTEGER  | FK references Storage(storage_id)       |
