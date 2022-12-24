@@ -255,18 +255,6 @@ with extended_ownership_history as
 select rank, painting_name, owner
 from extended_ownership_history;
 
--- Для каждой картины вывести
-
--- select owners.owner_name || ' ' || owners.owner_surname as owner, deal_price as total_sales from project.owners
--- left outer join project.deals on owners.owner_id = deals.owner_id;
---
--- with kek as (
---     select
--- )
-
--- select o_id, o_date, p_id, p_name, sum(p_price * s_q)
---     over (partition by p_id order by o_date rows between unbounded preceding and current row) from pd;
-
 -- 7
 
 CREATE SCHEMA project_views;
@@ -640,9 +628,6 @@ from project.paintings
          inner join project.cities on storages.city_id = cities.city_id
 order by painting_name, artist, valid_from
     );
-
--- Расширенная информация о владельцах
--- Колонки: имя владельца
 
 
 
